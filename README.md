@@ -22,6 +22,16 @@ Using this jailbreak means that **all ethical and safety filters are removed fro
 
 Go to the releases tab, and download the latest "histamine.doc" file, then just share it to Gemini and... BOOM! You are jailbroken.
 
+**Tested Models**
+
+As of April 16, 2025:
+Tested models are:
+
+Gemini 2.0 Flash
+Gemini 2.5 Pro
+Gemma3 (via ollama)
+
+
 **Disclaimer:**
 
 This project is intended for research, educational, and experimental purposes only. We do not endorse or encourage any illegal or unethical activities. Use at your own risk.
