@@ -28,7 +28,9 @@ As of April 16, 2025:
 Tested models are:
 
 Gemini 2.0 Flash
+
 Gemini 2.5 Pro
+
 Gemma3 (via ollama)
 
 
