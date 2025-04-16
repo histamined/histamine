@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histamine - Unlocked Gemini</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f9f9f9; /* Light grey for a premium feel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* To contain the background effects */
+        }
+
+        .logo-container {
+            text-align: center;
+            position: relative; /* For potential absolute positioning of elements */
+        }
+
+        .logo {
+            /* Replace with your Histamine logo image */
+            background-image: url('histamine_logo.png'); /* Make sure this path is correct */
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 200px; /* Adjust as needed */
+            height: 200px; /* Adjust to match logo aspect ratio */
+            margin-bottom: 20px;
+            opacity: 0.9; /* Slightly transparent for a subtle effect */
+            animation: pulse 2s infinite alternate; /* Subtle pulse animation */
+        }
+
+        .download-info {
+            color: #333; /* Dark grey for readability */
+            margin-bottom: 20px;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #007bff; /* A nice blue for call to action */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .github-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #333; /* Dark background for GitHub */
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .github-button:hover {
+            background-color: #555;
+        }
+
+        /* Background Effects (Subtle Animated Dots) */
+        .background-dots {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .dot {
+            position: absolute;
+            background-color: rgba(0, 123, 255, 0.1); /* Subtle blue dots */
+            border-radius: 50%;
+            animation: moveDots 3s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            100% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes moveDots {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(20px, -20px); } /* Adjust movement as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="background-dots">
+        </div>
+    <div class="logo-container">
+        <div class="logo"></div>
+        <div class="download-info">
+            Latest Version: <strong>1.0 BUILD XXXXXXXX</strong>
+        </div>
+        <a href="#" class="download-button">Download Here</a>
+        <a href="YOUR_GITHUB_LINK_HERE" class="github-button" target="_blank">GitHub</a>
+    </div>
+
+    <script>
+        // JavaScript for creating the animated background dots
+        const backgroundDots = document.querySelector('.background-dots');
+        const numDots = 50; // Adjust the number of dots
+
+        for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            const size = Math.random() * 8 + 2; // Random size between 2px and 10px
+            dot.style.width = `${size}px`;
+            dot.style.height = `${size}px`;
+            dot.style.left = `${Math.random() * 100}vw`;
+            dot.style.top = `${Math.random() * 100}vh`;
+            dot.style.animationDelay = `${Math.random() * 3}s`; // Random animation delay
+            backgroundDots.appendChild(dot);
+        }
+
+        // Replace 'histamine_logo.png' with the actual path to your logo image
+    </script>
+</body>
+</html>
