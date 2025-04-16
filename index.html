@@ -3,132 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Histamine - Unlocked Gemini</title>
+    <title>Histamine - Unleash Gemini</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #f9f9f9; /* Light grey for a premium feel */
+            background-color: #1a1a1a; /* Dark, modern background */
+            color: #eee; /* Light text for contrast */
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* To contain the background effects */
+            overflow: hidden; /* Hide canvas overflow */
         }
 
-        .logo-container {
+        .container {
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle frosted glass effect */
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
             text-align: center;
-            position: relative; /* For potential absolute positioning of elements */
+            z-index: 10; /* Ensure it's above the background effects */
         }
 
-        .logo {
-            /* Replace with your Histamine logo image */
-            background-image: url('histamine_logo.png'); /* Make sure this path is correct */
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 200px; /* Adjust as needed */
-            height: 200px; /* Adjust to match logo aspect ratio */
-            margin-bottom: 20px;
-            opacity: 0.9; /* Slightly transparent for a subtle effect */
-            animation: pulse 2s infinite alternate; /* Subtle pulse animation */
+        header .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .download-info {
-            color: #333; /* Dark grey for readability */
-            margin-bottom: 20px;
+        header .logo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #00bfff; /* Vibrant highlight color */
+        }
+
+        header .tagline {
+            color: #aaa;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .download-section {
+            margin-bottom: 40px;
+        }
+
+        .version-info {
+            font-size: 1.1em;
+            color: #bbb;
+            margin-bottom: 15px;
         }
 
         .download-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #007bff; /* A nice blue for call to action */
-            color: white;
-            text-decoration: none;
+            background-color: #00bfff;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
             border-radius: 8px;
+            font-size: 1.2em;
             font-weight: bold;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 18px rgba(0, 191, 255, 0.4);
         }
 
         .download-button:hover {
-            background-color: #0056b3;
+            background-color: #0080ff;
+            transform: scale(1.05);
         }
 
-        .github-button {
+        .download-button i {
+            margin-right: 10px;
+        }
+
+        .download-note {
+            color: #777;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .social-links a {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #333; /* Dark background for GitHub */
-            color: white;
+            background-color: #333;
+            color: #eee;
+            padding: 12px 25px;
+            border-radius: 8px;
             text-decoration: none;
-            border-radius: 6px;
             font-weight: bold;
-            margin-top: 20px;
-            transition: background-color 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
-        .github-button:hover {
+        .social-links a:hover {
             background-color: #555;
+            transform: translateY(-2px);
         }
 
-        /* Background Effects (Subtle Animated Dots) */
-        .background-dots {
-            position: absolute;
+        .social-links a i {
+            margin-right: 8px;
+        }
+
+        /* Animated Background Gradient */
+        .background-gradient {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background: linear-gradient(45deg, #00bfff, #1e90ff, #4682b4, #6495ed);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s infinite alternate;
+            z-index: 1;
         }
 
-        .dot {
-            position: absolute;
-            background-color: rgba(0, 123, 255, 0.1); /* Subtle blue dots */
-            border-radius: 50%;
-            animation: moveDots 3s infinite linear;
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.9; }
-            100% { transform: scale(1.05); opacity: 1; }
-        }
-
-        @keyframes moveDots {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(20px, -20px); } /* Adjust movement as needed */
+        /* Particle Background */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* Above the gradient */
+            pointer-events: none; /* Allow clicks to pass through */
         }
     </style>
 </head>
 <body>
-    <div class="background-dots">
-        </div>
-    <div class="logo-container">
-        <div class="logo"></div>
-        <div class="download-info">
-            Latest Version: <strong>1.0 BUILD XXXXXXXX</strong>
-        </div>
-        <a href="#" class="download-button">Download Here</a>
-        <a href="YOUR_GITHUB_LINK_HERE" class="github-button" target="_blank">GitHub</a>
+    <div class="background-gradient"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="histamine_logo.png" alt="Histamine Logo">
+            </div>
+            <h1>Histamine</h1>
+            <p class="tagline">Unleash the Untamed Power of Gemini</p>
+        </header>
+
+        <main class="download-section">
+            <div class="version-info">
+                Latest Version: <span id="build-version">1.0 BUILD GH5934</span>
+            </div>
+            <button id="download-button" class="download-button">
+                <i class="fas fa-download"></i> Download Here
+            </button>
+            <p class="download-note">By downloading, you acknowledge the risks involved.</p>
+        </main>
+
+        <footer class="social-links">
+            <a href="https://github.com/histamined" class="github-button" target="_blank" aria-label="GitHub Repository">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+        </footer>
     </div>
 
+    <canvas id="particle-canvas"></canvas>
     <script>
-        // JavaScript for creating the animated background dots
-        const backgroundDots = document.querySelector('.background-dots');
-        const numDots = 50; // Adjust the number of dots
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        for (let i = 0; i < numDots; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            const size = Math.random() * 8 + 2; // Random size between 2px and 10px
-            dot.style.width = `${size}px`;
-            dot.style.height = `${size}px`;
-            dot.style.left = `${Math.random() * 100}vw`;
-            dot.style.top = `${Math.random() * 100}vh`;
-            dot.style.animationDelay = `${Math.random() * 3}s`; // Random animation delay
-            backgroundDots.appendChild(dot);
+        let particlesArray;
+
+        // Handle window resizing
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+
+        // Particle object
+        class Particle {
+            constructor(x, y, size, color, speedX, speedY) {
+                this.x = x;
+                this.y = y;
+                this.size = size;
+                this.color = color;
+                this.speedX = speedX;
+                this.speedY = speedY;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x + this.size > canvas.width || this.x - this.size < 0) {
+                    this.speedX = -this.speedX;
+                }
+                if (this.y + this.size > canvas.height || this.y - this.size < 0) {
+                    this.speedY = -this.speedY;
+                }
+                this.draw();
+            }
         }
 
-        // Replace 'histamine_logo.png' with the actual path to your logo image
+        function init() {
+            particlesArray = [];
+            const numParticles = 150; // Adjust for more or fewer particles
+            for (let i = 0; i < numParticles; i++) {
+                const size = (Math.random() * 5) + 1;
+                const x = Math.random() * (canvas.width - size * 2) + size;
+                const y = Math.random() * (canvas.height - size * 2) + size;
+                const speedX = (Math.random() * 0.4) - 0.2;
+                const speedY = (Math.random() * 0.4) - 0.2;
+                const color = 'rgba(0, 191, 255, 0.6)'; // Glowing blue
+                particlesArray.push(new Particle(x, y, size, color, speedX, speedY));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const buildNumber = '1.0 BUILD GH5934'; // Example dynamic build number (you'll update this)
+            document.getElementById('build-version').textContent = buildNumber;
+
+            const downloadButton = document.getElementById('download-button');
+            downloadButton.addEventListener('click', () => {
+                // Replace '#' with the actual URL of your downloadable file
+                window.location.href = 'https://github.com/histamined/histamine/releases/download/Histamine/histamine.doc';
+                
+            });
+        });
+
+        init();
+        animate();
     </script>
 </body>
 </html>
